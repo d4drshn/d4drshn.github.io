@@ -91,12 +91,12 @@ export default function CampaignTable(props) {
               (eventDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24)
             );
             let relativeTIme = "";
-            if (dayDIff < 0) {
+	    if(currentDate.toDateString() === eventDate.toDateString()){
+	      relativeTIme = `${t("today")}`;
+            }else if (dayDIff < 0) {
               relativeTIme = `${-dayDIff} ${t("daysAgo")}`;
-            } else if (dayDIff > 0) {
+            } else{
               relativeTIme = `${dayDIff} ${t("daysAhead")}`;
-            } else {
-              relativeTIme = `${t("today")}`;
             }
             return (
               <tr key={row.name} id={row.name} onClick={onRowClick}>
